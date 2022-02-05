@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# yarn lint:fix && yarn test
+# yarn lint-staged
+# yarn lint:fix && yarn prettier:fix
+yarn lint:fix
+# exit 1
