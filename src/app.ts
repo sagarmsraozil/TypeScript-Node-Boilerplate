@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Parse the payloads coming from the server.
 app.use(express.json());
 // Handle media files.
-app.use('/media', express.static(path.join(__dirname, './src/media')));
+app.use('/media', express.static(path.join(__dirname, '/media')));
 
 // Prepare each routes with api alias before execution.
 /**  Example: app.use('/api/user',RegistrationRoute) */

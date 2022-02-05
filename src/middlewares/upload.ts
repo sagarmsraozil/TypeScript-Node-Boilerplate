@@ -1,24 +1,33 @@
-// import multer from 'multer';
+import { Request, Express } from 'express';
+import multer, { FileFilterCallback } from 'multer';
 
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, '../media');
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + file.originalname);
-//   },
-// });
+// Custom datatypes for supporting multer usage.
+type DestinationCallBack = (error: Error | null, destination: string) => void; // eslint-disable-line
+type FileNameCallBack = (error: Error | null, fileName: string) => void; // eslint-disable-line
 
-// const upload = multer({
-//   storage: storage,
-//   fileFilter: (req, file, cb) => {
-//     if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
-//       cb(null, true);
-//     } else {
-//       req.fileValidationError = 'Only image files are allowed!';
-//       cb(null, false);
-//     }
-//   },
-// });
+// For storage
+const fileStorage = multer.diskStorage({
+  destination: (req: Request, file: Express.Multer.File, callBack: DestinationCallBack) => {
+    callBack(null, '../media');
+  },
+  filename: (req: Request, file: Express.Multer.File, callBack: FileNameCallBack) => {
+    callBack(null, Date.now() + file.originalname);
+  },
+});
 
-// export default upload;
+// File filtration
+const fileFilter = (req: Request, file: Express.Multer.File, callBack: FileFilterCallback) => {
+  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+    callBack(null, true);
+  } else {
+    callBack(null, false);
+  }
+};
+
+// Upload file
+const upload = multer({
+  storage: fileStorage,
+  fileFilter,
+});
+
+export default upload;
