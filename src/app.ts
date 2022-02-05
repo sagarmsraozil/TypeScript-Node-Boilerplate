@@ -2,9 +2,9 @@
 import cors from 'cors';
 import morgan from 'morgan';
 import colors from 'colors';
-import express from 'express';
 import dotenv from 'dotenv-safe';
 import bodyParser from 'body-parser';
+import express, { Request, Response } from 'express';
 
 // Core modules
 import http from 'http';
@@ -40,6 +40,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 // Handle media files.
 app.use('/media', express.static(path.join(__dirname, '/media')));
+
+// Checking whether the server is running or not.
+app.get('/', (req: Request, res: Response) => {
+  res.send('Server is running');
+});
 
 // Prepare each routes with api alias before execution.
 /**  Example: app.use('/api/user',RegistrationRoute) */
