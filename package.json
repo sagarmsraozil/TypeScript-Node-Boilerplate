@@ -21,8 +21,8 @@
     "test:coverage": "jest --coverage",
     "test:unit": "jest unit",
     "test:int": "jest int",
-    "prettier:check": "prettier --check -c ./.prettierrc.json ./src/**/*.{ts}",
-    "prettier:fix": "prettier --write -c ./.prettierrc.json ./src/**/*.{ts}",
+    "prettier:check": "prettier --check -c ./.prettierrc.json ./src",
+    "prettier:fix": "prettier --write -c ./.prettierrc.json ./src",
     "prepare": "husky install"
   },
   "devDependencies": {

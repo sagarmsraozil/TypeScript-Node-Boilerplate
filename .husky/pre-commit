@@ -3,6 +3,5 @@
 
 # yarn lint:fix && yarn test
 # yarn lint-staged
-# yarn lint:fix && yarn prettier:fix
-yarn lint:fix
+yarn lint:fix && yarn prettier:fix
 # exit 1
