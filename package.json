@@ -11,8 +11,8 @@
     "Boilerplate"
   ],
   "scripts": {
-    "dev": "set NODE_ENV=development & nodemon src/app.ts",
-    "start": "nodemon src/app.ts",
+    "dev": "NODE_ENV=development NODE_PATH=./src nodemon src/app.ts",
+    "start": "NODE_PATH=./src nodemon src/app.ts",
     "build": "tsc -p tsconfig.eslint.json",
     "lint": "eslint -c ./.eslintrc.json ./",
     "lint:fix": "eslint -c ./.eslintrc.json ./ --fix",
