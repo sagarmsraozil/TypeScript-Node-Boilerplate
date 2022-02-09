@@ -8,7 +8,7 @@ type FileNameCallBack = (error: Error | null, fileName: string) => void; // esli
 // For storage
 const fileStorage = multer.diskStorage({
   destination: (req: Request, file: Express.Multer.File, callBack: DestinationCallBack) => {
-    callBack(null, '../media');
+    callBack(null, './src/media');
   },
   filename: (req: Request, file: Express.Multer.File, callBack: FileNameCallBack) => {
     callBack(null, Date.now() + file.originalname);

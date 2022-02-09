@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Parse the payloads coming from the server.
 app.use(express.json());
 // Handle media files.
-app.use('/media', express.static(path.join(__dirname, '/media')));
+app.use('/media', express.static(path.join(__dirname, 'media')));
 
 // Checking whether the server is running or not.
 app.get('/', (req: Request, res: Response) => {
