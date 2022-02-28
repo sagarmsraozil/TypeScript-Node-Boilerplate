@@ -11,8 +11,8 @@ import http from 'http';
 import path from 'path';
 
 // Local modules
-import './database/database';
 import './schedule/schedule';
+import database from './database/database';
 
 // Collection of application routes.
 /**  Example: import RegistrationRoute from './routes/registrationRoute'; */
@@ -44,6 +44,22 @@ app.use('/media', express.static(path.join(__dirname, 'media')));
 // Checking whether the server is running or not.
 app.get('/', (req: Request, res: Response) => {
   res.send('Server is running');
+});
+
+// Database setup
+database.on('close', () => {
+  // eslint-disable-next-line
+  console.log(colors.zalgo.bold.underline('Connection to database is closed.'));
+});
+
+database.on('error', () => {
+  // eslint-disable-next-line
+  console.log(colors.red.bold.underline('Hmm, something went wrong while connecting to database.'));
+});
+
+database.once('open', () => {
+  // eslint-disable-next-line
+  console.log(colors.white.bold.underline('Connected to database.'));
 });
 
 // Prepare each routes with api alias before execution.

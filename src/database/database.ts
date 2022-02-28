@@ -1,4 +1,3 @@
-import colors from 'colors';
 import mongoose, { ConnectOptions } from 'mongoose';
 
 const databaseName = 'balanceSheet';
@@ -11,9 +10,8 @@ const options: ConnectOptions = {
   retryWrites: false,
 };
 
-mongoose
-  .connect(mongodbPath, options)
-  // eslint-disable-next-line
-  .then(() => console.log(colors.bold.underline('Connected to database')))
-  // eslint-disable-next-line
-  .catch(() => console.log(colors.red.bold.underline('Hmm, got error while connecting to database.')));
+mongoose.connect(mongodbPath, options);
+
+const connection = mongoose.connection;
+
+export default connection;
