@@ -13,6 +13,7 @@ import path from 'path';
 // Local modules
 import './schedule/schedule';
 import database from './database/database';
+import { errorHandler } from 'utils/errorHelper';
 
 // Collection of application routes.
 /**  Example: import RegistrationRoute from './routes/registrationRoute'; */
@@ -64,6 +65,9 @@ database.once('open', () => {
 
 // Prepare each routes with api alias before execution.
 /**  Example: app.use('/api/user',RegistrationRoute) */
+
+// To perform error handling
+app.use(errorHandler);
 
 // Connecting to server.
 const portNo = process.env.PORT ?? 5001;

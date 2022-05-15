@@ -11,9 +11,18 @@ export interface CustomRequestInterface extends Express {
   user: UserInterface;
 }
 
-// For req.fields functionality of multer.
-// initialization : line 1 :const files = req.files as MultipleImagesInterface
-// line 2 : files.images
 export interface MultipleImagesInterface extends ObjectKeys<Express.Multer.File[]> {
   images: Express.Multer.File[];
+}
+
+export interface StatusCodeInterface {
+  SUCCESS: number;
+  BAD_REQUEST: number;
+  UNAUTHORIZED: number;
+  FORBIDDEN: number;
+  NOT_FOUND: number;
+  NOT_ACCEPTABLE: number;
+  REQUEST_TIMEOUT: number;
+  CONFLICT: number;
+  INTERNAL_SERVER_ERROR: number;
 }
