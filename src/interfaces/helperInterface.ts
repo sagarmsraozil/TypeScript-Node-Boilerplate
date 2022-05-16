@@ -1,4 +1,4 @@
-import { Express } from 'express';
+import { Request } from 'express';
 
 import { UserInterface } from './userInterface';
 
@@ -7,7 +7,7 @@ export interface ObjectKeys<T = any> {
   [key: string]: T;
 }
 
-export interface CustomRequestInterface extends Express {
+export interface CustomRequestInterface extends Request {
   user: UserInterface;
 }
 
