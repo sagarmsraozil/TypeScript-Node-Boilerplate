@@ -15,7 +15,9 @@
 //  */
 // export const authorizeUser = async (req: Request, res: Response, next: NextFunction) => {
 //   try {
+//    const cookieToken = req.cookies.accessToken;
 //     const token = req.headers.authorization?.split(' ')[1] ?? '';
+//     Use cookieToken or token for verification, according to need
 //     const decodedData = (await verifyToken(token, process.env.SECRET_KEY ?? '')) as JwtPayload;
 
 //     if (decodedData) {
