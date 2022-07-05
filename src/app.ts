@@ -4,7 +4,6 @@ import csurf from 'csurf';
 import morgan from 'morgan';
 import colors from 'colors';
 import helmet from 'helmet';
-import dotenv from 'dotenv-safe';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import express, { Request, Response } from 'express';
@@ -15,23 +14,19 @@ import path from 'path';
 
 // Local modules
 import './schedule/schedule';
+import { APP_VALUE } from 'configs/index';
 import database from './database/database';
 import { errorHandler } from 'utils/errorHelper';
 
 // Collection of application routes.
 /**  Example: import RegistrationRoute from './routes/registrationRoute'; */
 
-// Dotenv configuration for handling and reading .env variables.
-dotenv.config({
-  path: './.env',
-});
-
 // Initializing a server.
 const app = express();
 const server = http.createServer(app);
 
 // Configuration for developers to check api runtime and its status code in terminal.
-if (process.env.NODE_ENV?.trim().toLowerCase() === 'development') {
+if (APP_VALUE.DEVELOPMENT.trim().toLowerCase() === 'development') {
   app.use(morgan('dev'));
 }
 
@@ -84,7 +79,7 @@ database.once('open', () => {
 app.use(errorHandler);
 
 // Connecting to server.
-const portNo = process.env.PORT ?? 5001;
+const portNo = APP_VALUE.PORT ?? 5001;
 
 server.listen(portNo, () => {
   // eslint-disable-next-line
