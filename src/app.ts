@@ -38,7 +38,7 @@ if (process.env.NODE_ENV?.trim().toLowerCase() === 'development') {
 // Configuration for application
 // Cors: to enable CORS policy for third party domains to use rest APIs. (Like a traffic, checking blue book of vehicle to validate the owner).
 app.use(cors());
-// Parsing a cookie values // use if your app runs with cookie authentication
+// Parsing a cookie values // use if your app runs with cookie authentication // use res.cookie('cookieName',cookieValue,options) to set cookie into user's browser.
 app.use(cookieParser());
 /* Anti csrf vulnerabilities: To add csrf token in app for axios: axios.defaults.headers.post['X-CSRF-Token'] = data.csrfToken;
 data.csrf token should be provided from api call where token is req.csrftoken */
