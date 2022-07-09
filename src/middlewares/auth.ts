@@ -36,8 +36,15 @@
 //       return res.status(401).json({ success: false, message: 'Unauthorized.' });
 //     }
 //   } catch (err) {
-//     const error = err as Error;
+// let statusCode = 500;
 
-//     return res.status(500).json({ success: false, message: error.message });
+// let errorMessage = error.message;
+
+// if (errorMessage === 'jwt expired' || errorMessage === 'jwt must be provided') {
+//   errorMessage = 'Session time out! Please, login to access contents!';
+//   statusCode = 401;
+// }
+
+// return res.status(statusCode).json({ success: false, message: errorMessage });
 //   }
 // };
