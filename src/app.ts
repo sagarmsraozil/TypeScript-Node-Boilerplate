@@ -30,9 +30,28 @@ if (APP_VALUE.DEVELOPMENT.trim().toLowerCase() === 'development') {
   app.use(morgan('dev'));
 }
 
+// Allowed origins
+// const allowedOrigins = APP_VALUE.ALLOWED_ORIGINS.split(',').map((origin) => origin.trim().toLowerCase());
+
 // Configuration for application
-// Cors: to enable CORS policy for third party domains to use rest APIs. (Like a traffic, checking blue book of vehicle to validate the owner).
+// Cors: to enable CORS policy for specified origins to use rest APIs. (Like a traffic, checking blue book of vehicle to validate the owner).
 app.use(cors());
+
+// IMPORTANT: For more security add which origins can access your server's api. Uncomment allowed origin in line number 34 too.
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (allowedOrigins.includes(origin ?? '')) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error('Not allowed by CORS!'));
+//       }
+//     },
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     preflightContinue: false,
+//     optionsSuccessStatus: 204,
+//   })
+// );
 // Parsing a cookie values // use if your app runs with cookie authentication // use res.cookie('cookieName',cookieValue,options) to set cookie into user's browser.
 app.use(cookieParser());
 /* Anti csrf vulnerabilities: To add csrf token in app for axios: axios.defaults.headers.post['X-CSRF-Token'] = data.csrfToken;
