@@ -44,10 +44,10 @@
     //"emitDecoratorMetadata": true /* Enables experimental support for emitting type metadata for decorators. */,
 
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["node"],
+    "types": ["node", "jest"],
     "typeRoots": ["node_modules/@types", "src/types"],
     "baseUrl": "./src"
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "coverage", "__tests__"]
+  "include": ["src", "src/__tests__"],
+  "exclude": ["node_modules", "dist", "coverage"]
 }
