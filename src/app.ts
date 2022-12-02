@@ -6,6 +6,7 @@ import colors from 'colors';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import swaggerUI from 'swagger-ui-express';
 import express, { Request, Response } from 'express';
 
 // Core modules
@@ -17,6 +18,8 @@ import './schedule/schedule';
 import { APP_VALUE } from 'configs/index';
 import database from './database/database';
 import { errorHandler } from 'utils/errorHelper';
+import { swaggerOptions } from 'swagger/swagger';
+import swaggerDocument from 'swagger/swagger.json';
 
 // Collection of application routes.
 /**  Example: import RegistrationRoute from './routes/registrationRoute'; */
@@ -73,6 +76,18 @@ app.use('/media', express.static(path.join(__dirname, 'media')));
 // Checking whether the server is running or not.
 app.get('/', (req: Request, res: Response) => {
   res.send('Server is running');
+});
+
+// Swagger connection
+app.use(
+  '/api-docs',
+  swaggerUI.serve,
+  swaggerUI.setup(swaggerDocument, { swaggerOptions: { ...swaggerOptions, persistAuthorization: true } })
+);
+
+app.get('/api/api-docs/swagger.json', (req, res) => {
+  res.header('Content-Type', 'application/json');
+  res.send(JSON.stringify(swaggerDocument, null, 4));
 });
 
 // Database setup

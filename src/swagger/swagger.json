@@ -1,0 +1,114 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Boilerplate",
+    "version": "1.0.0",
+    "termsOfService": "Add terms of service url",
+    "description": "Boiler plate description",
+    "contact": {
+      "name": "Your name",
+      "email": "email@gmail.com"
+    },
+    "license": {
+      "name": "Import",
+      "url": "http://localhost:3000/api-docs/swagger.json"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Auth Apis"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "ResponseJSON": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "True or False depending on the success or failure response!",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "Description of the response!",
+            "example": "Operation succeed!"
+          },
+          "data": {
+            "type": "object",
+            "description": "Response data from api request!",
+            "example": { "items": [] }
+          }
+        }
+      },
+      "Default": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "True or False depending on the success or failure response!",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "description": "Description of the response!",
+            "example": "Something went wrong!"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "in": "header"
+      }
+    }
+  },
+  "paths": {
+    "/user/fetchUsers": {
+      "get": {
+        "tags": ["Auth"],
+        "description": "Fetch users",
+        "operationId": "authentication",
+        "responses": {
+          "200": {
+            "description": "A list of products with magic prices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ResponseJSON"
+                }
+              }
+            }
+          },
+          "Default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Default"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "apis": ["../routes/*.ts"]
+}
